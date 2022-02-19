@@ -1,0 +1,45 @@
+<div class="row" #dtContainer>
+  <div class="col-sm-12">
+    <ngx-datatable
+      class="material"
+      [rows]="data"
+      [columns]="[{ name: 'domain' }, { name: 'isActive' }, { name: 'isVerified' }]"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="43"
+      [selected]="selectedDomains"
+      [selectionType]="'checkbox'"
+      (activate)="onActivate($event)"
+      (select)="onSelect($event)"
+      (page)="setPage($event)"
+    >
+      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" [headerCheckboxable]="false" [checkboxable]="true"></ngx-datatable-column>
+
+      <ngx-datatable-column name="domain" [flexGrow]="3" [minWidth]="200">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{ value }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="isActive" [flexGrow]="3" [minWidth]="200">
+        <ng-template ngx-datatable-header-template>
+          <span>Status</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <i class="fa fa-times text-danger" *ngIf="value === '0'"></i>
+          <i class="fa fa-check text-success" *ngIf="value === '1'"></i>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="isVerified" [flexGrow]="3" [minWidth]="200">
+        <ng-template ngx-datatable-header-template>
+          <span>Verified</span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <i class="fa fa-times text-danger" *ngIf="value === '0'"></i>
+          <i class="fa fa-check text-success" *ngIf="value === '1'"></i>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

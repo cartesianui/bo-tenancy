@@ -1,0 +1,92 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <!--      <button class="btn btn-danger  ml-1 pull-right" (click)="delete()">-->
+      <!--        <i class="fa fa-trash"></i> Delete-->
+      <!--      </button>-->
+      <button
+        class="btn btn-danger ml-1 pull-right"
+        (click)="tenantDomainsComponent.deleteDomain()"
+        [disabled]="tenantDomainsComponent.selectedDomains.length > 1 || tenantDomainsComponent.selectedDomains.length === 0"
+      >
+        <i class="fa fa-trash"></i> Delete
+      </button>
+      <button class="btn btn-dark ml-1 pull-right" (click)="tenantDomainsComponent.deactiveDomain()"><i class="fa fa-lock"></i> Deactive</button>
+      <button class="btn btn-primary ml-1 pull-right" (click)="tenantDomainsComponent.activeDomain()"><i class="fa fa-unlock"> </i> Active</button>
+
+      <button
+        class="btn btn-success ml-1 pull-right"
+        (click)="tenantDomainsComponent.verifyDomain()"
+        [disabled]="tenantDomainsComponent.selectedDomains.length > 1 || tenantDomainsComponent.selectedDomains.length === 0"
+      >
+        <i class="fa fa-check"></i> Verify
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <tabset>
+        <!-- Tenant tab -->
+        <tab heading="Tenant">
+          <div class="row">
+            <!--Start tenant  -->
+            <div class="col-md-6">
+              <div class="card" #detailCard>
+                <div class="card-header">
+                  <strong>Tenant Detail</strong>
+                </div>
+                <div class="card-body">
+                  <form [formGroup]="formGroup">
+                    <div class="form-group required">
+                      <label>Name</label>
+                      <input type="text" formControlName="name" class="form-control" />
+                    </div>
+                    <div class="form-group required">
+                      <label>Status </label>
+                      <input type="text" formControlName="isActive" class="form-control" />
+                    </div>
+                    <div class="form-group required">
+                      <label>Mode</label>
+                      <input type="text" formControlName="mode" class="form-control" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!--End tenant  -->
+            <!--Start List -->
+            <div class="col-md-6">
+              <div class="card" #formCard>
+                <div class="card-header">
+                  <strong>Domain List</strong>
+                </div>
+                <div class="card-body">
+                  <label>Add Domain</label>
+
+                  <form class="form-group form-inline">
+                    <div class="required">
+                      <input [formControl]="control" [ngClass]="control.valid ? 'is-valid' : control.touched && control.dirty ? 'is-invalid' : ''" class="form-control" />
+                    </div>
+                    <button class="btn btn-success ml-1" (click)="addDomain()" [disabled]="control.invalid || loading">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                    <div class="invalid-feedback">Invalid role value!</div>
+                  </form>
+                  <!-- add here List of domain-->
+                  <tenant-domains
+                    [parent]="this"
+                    [domains]="domainsList"
+                    #tenantDomainsComponent
+                    onClick
+                  > </tenant-domains>
+                </div>
+              </div>
+            </div>
+            <!--End List -->
+          </div>
+        </tab>
+        <!--End Tenant tab -->
+      </tabset>
+    </div>
+  </div>
+</div>

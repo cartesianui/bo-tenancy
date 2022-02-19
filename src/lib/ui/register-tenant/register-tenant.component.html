@@ -1,0 +1,133 @@
+<div class="app-body app-account" style="height: 100vh" [@routerTransition]>
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card text-white bg-primary py-5 d-md-down-none">
+              <div class="card-body text-center d-flex flex-column justify-content-center">
+                <h2>Sign in!</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="mb-1">
+                  <a [routerLink]="['../login']">
+                    <button type="button" class="btn btn-primary active mt-3">
+                      {{ 'Login Now!' | localize }}
+                    </button>
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div class="card p-2">
+              <div class="card-body">
+                <form autocomplete="off" novalidate [formGroup]="formGroup" (ngSubmit)="register()">
+                  <h1>{{ 'Register Tenant' | localize }}</h1>
+                  <h5 class="text-muted">Create a new account</h5>
+                  <!--Start Account Info !-->
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="text-muted">Account Info</h6>
+                      <div class="form-group" *ngIf="formGroup.controls['email']; let emailControl">
+                        <div class="input-group">
+                          <input
+                            type="email"
+                            class="form-control"
+                            name="emailAddress"
+                            formControlName="email"
+                            [ngClass]="getFormClasses(emailControl)"
+                            placeholder="{{ 'EmailAddress' | localize }}"
+                            required
+                            maxlength="256"
+                          />
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="emailControl.touched && emailControl.dirty && emailControl.invalid" class="text-danger text-right mb-3">
+                          <span *ngIf="emailControl.errors">
+                            {{ getError(emailControl.errors) }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="name" placeholder=" {{ 'Name' | localize }}" formControlName="name" [ngClass]="getFormClasses(formGroup.controls['name'])" />
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-user"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--End Account Info !-->
+                      <h6 class="text-muted">Tenant Info</h6>
+                      <div class="form-group" *ngIf="formGroup.controls['password']; let passControl">
+                        <div class="input-group">
+                          <input
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            placeholder="{{ 'Password' | localize }}"
+                            [ngClass]="getFormClasses(passControl)"
+                            name="password"
+                            formControlName="password"
+                          />
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-lock"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="passControl.touched && passControl.dirty && passControl.invalid" class="text-danger text-right">
+                          <span *ngIf="passControl.errors">
+                            {{ getError(passControl.errors) }}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="form-group" *ngIf="formGroup.controls['domain']; let domainControl">
+                        <div class="input-group">
+                          <input
+                            type="domain"
+                            class="form-control"
+                            name="domainAddress"
+                            formControlName="domain"
+                            [ngClass]="getFormClasses(domainControl)"
+                            placeholder="{{ 'Domain' | localize }}"
+                            required
+                            maxlength="256"
+                          />
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="domainControl.touched && domainControl.dirty && domainControl.invalid" class="text-danger text-right mb-3">
+                          <span *ngIf="domainControl.errors">
+                            {{ getError(domainControl.errors) }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--End Tenant Info !-->
+
+                  <div class="row">
+                    <div class="col-6 ml-auto">
+                      <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid || loading">
+                        {{ 'Register' | localize }}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
