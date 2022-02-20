@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpService, POST, GET, Body, Criteria, DefaultHeaders, Adapter, RequestCriteria, Path, DELETE, PATCH } from '@cartesianui/ng-axis';
-import { Tenant, Domain, SearchTenantForm } from '../models';
+import { Tenant, Domain, SearchTenantForm, TenantRegistrationForm } from '../models';
 
 @Injectable()
 @DefaultHeaders({
@@ -9,6 +9,17 @@ import { Tenant, Domain, SearchTenantForm } from '../models';
   'Content-Type': 'application/json'
 })
 export class TenancyHttpService extends HttpService {
+
+  /**
+   * Submits register tenant form to the server
+   *
+   *  form AuthUser registration form
+   */
+  @POST('/tenants/register')
+  public register(@Body form: TenantRegistrationForm): Observable<any> {
+    return null;
+  }
+
   /**
    * Fetch tenants list
    *

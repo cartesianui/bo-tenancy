@@ -10,7 +10,7 @@ export interface TenantListingState {
   };
 }
 
-export interface TenantDetailState {
+export interface TenantState {
   loading: boolean;
   loaded: boolean;
   failed: boolean;
@@ -27,16 +27,16 @@ export interface DomainListingState {
   };
 }
 
-export interface DomainDetailState {
+export interface DomainState {
   loading: boolean;
   loaded: boolean;
   failed: boolean;
   data: Domain | null;
 }
 
-export interface TenantState {
+export interface TenancyState {
   listing: TenantListingState;
-  detail: TenantDetailState;
+  detail: TenantState;
   domainListing: DomainListingState;
-  domainDetail: DomainDetailState;
+  domainDetail: DomainState;
 }

@@ -1,8 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { DomainDetailState } from '../tenant.state';
+import { DomainState } from '../tenant.state';
 import * as tenantActions from '../tenant.action';
 
-const INITIAL_STATE: DomainDetailState = {
+const INITIAL_STATE: DomainState = {
   loading: false,
   loaded: false,
   failed: false,
@@ -47,6 +47,6 @@ const createDomainDetailReducers = createReducer(
   )
 );
 
-export function reducer(state: DomainDetailState | undefined, action: Action) {
+export function reducer(state: DomainState | undefined, action: Action) {
   return createDomainDetailReducers(state, action);
 }

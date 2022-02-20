@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { TenancyComponent } from './tenancy.component';
 import { ListTenantComponent } from './ui/list/list-tenant.component';
 import { EditTenantComponent } from './ui/edit/edit-tenant.component';
+import { RegisterTenantComponent } from './ui/register/register-tenant.component';
 
 const routes: Routes = [
   {
     path: '',
     component: TenancyComponent,
     children: [
+      { path: 'register', component: RegisterTenantComponent },
       {
         path: '',
         component: ListTenantComponent,

@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { RequestCriteria } from '@cartesianui/ng-axis';
 import { Sandbox } from '@cartesianui/common';
-import { Tenant, Domain, SearchTenantForm } from './models';
+import { Tenant, Domain, SearchTenantForm, TenantRegistrationForm } from './models';
 import { TenantState, tenantActions, tenantSelectors } from './store';
 
 @Injectable()
@@ -26,6 +26,15 @@ export class TenancySandbox extends Sandbox {
 
   constructor(protected store: Store<TenantState>, protected injector: Injector) {
     super(injector);
+  }
+
+  /**
+   * Dispatches register tenant action
+   *
+   * @param  RegisterTenantForm form AuthUser registration form
+   */
+  public register(form: TenantRegistrationForm): void {
+    this.store.dispatch(tenantActions.doRegisterTenant({ registerForm: form }));
   }
 
   /**

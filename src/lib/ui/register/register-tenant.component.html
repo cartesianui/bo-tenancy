@@ -11,7 +11,7 @@
                 <p class="mb-1">
                   <a [routerLink]="['../login']">
                     <button type="button" class="btn btn-primary active mt-3">
-                      {{ 'Login Now!' | localize }}
+                      {{ 'Login Now!' }}
                     </button>
                   </a>
                 </p>
@@ -20,7 +20,7 @@
             <div class="card p-2">
               <div class="card-body">
                 <form autocomplete="off" novalidate [formGroup]="formGroup" (ngSubmit)="register()">
-                  <h1>{{ 'Register Tenant' | localize }}</h1>
+                  <h1>{{ 'Register Tenant' }}</h1>
                   <h5 class="text-muted">Create a new account</h5>
                   <!--Start Account Info !-->
                   <div class="card">
@@ -34,7 +34,7 @@
                             name="emailAddress"
                             formControlName="email"
                             [ngClass]="getFormClasses(emailControl)"
-                            placeholder="{{ 'EmailAddress' | localize }}"
+                            placeholder="{{ 'EmailAddress' }}"
                             required
                             maxlength="256"
                           />
@@ -52,7 +52,7 @@
                       </div>
                       <div class="form-group">
                         <div class="input-group">
-                          <input type="text" class="form-control" name="name" placeholder=" {{ 'Name' | localize }}" formControlName="name" [ngClass]="getFormClasses(formGroup.controls['name'])" />
+                          <input type="text" class="form-control" name="name" placeholder=" {{ 'Name' }}" formControlName="name" [ngClass]="getFormClasses(formGroup.controls['name'])" />
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <span class="fas fa-user"></span>
@@ -69,7 +69,7 @@
                             type="password"
                             class="form-control"
                             name="password"
-                            placeholder="{{ 'Password' | localize }}"
+                            placeholder="{{ 'Password' }}"
                             [ngClass]="getFormClasses(passControl)"
                             name="password"
                             formControlName="password"
@@ -95,7 +95,7 @@
                             name="domainAddress"
                             formControlName="domain"
                             [ngClass]="getFormClasses(domainControl)"
-                            placeholder="{{ 'Domain' | localize }}"
+                            placeholder="{{ 'Domain' }}"
                             required
                             maxlength="256"
                           />
@@ -118,7 +118,7 @@
                   <div class="row">
                     <div class="col-6 ml-auto">
                       <button type="submit" class="btn btn-primary" [disabled]="!formGroup.valid || loading">
-                        {{ 'Register' | localize }}
+                        {{ 'Register' }}
                       </button>
                     </div>
                   </div>

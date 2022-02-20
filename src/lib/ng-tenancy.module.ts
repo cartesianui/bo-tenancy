@@ -17,9 +17,10 @@ import { TenancyComponent } from './tenancy.component';
 import { ListTenantComponent } from './ui/list/list-tenant.component';
 import { EditTenantComponent } from './ui/edit/edit-tenant.component';
 import { TenantDomainsComponent } from './ui/edit/tenant-domains/tenant-domains.component';
+import { RegisterTenantComponent } from './ui/register/register-tenant.component';
 
 @NgModule({
-  declarations: [TenancyComponent, ListTenantComponent, EditTenantComponent, TenantDomainsComponent],
+  declarations: [TenancyComponent, RegisterTenantComponent, ListTenantComponent, EditTenantComponent, TenantDomainsComponent],
   imports: [
     CommonModule,
     TenancyRoutingModule,

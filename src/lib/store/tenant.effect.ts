@@ -3,11 +3,32 @@ import { of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TenancyHttpService } from '../shared';
+import { Tenant } from '../models';
 import * as tenantActions from './tenant.action';
 
 @Injectable()
 export class TenantEffects {
   constructor(private actions$: Actions, private tenantHttpService: TenancyHttpService) {}
+
+  /**
+   * Registers Tenant effect
+   */
+  doRegisterTenant$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(tenantActions.doRegisterTenant),
+      map((action) => action.registerForm),
+      switchMap((registerForm) => {
+        return this.tenantHttpService.register(registerForm).pipe(
+          map((user) =>
+            tenantActions.doRegisterTenantSuccess({
+              tenant: new Tenant(user)
+            })
+          ),
+          catchError((error) => of(tenantActions.doRegisterTenantFail()))
+        );
+      })
+    )
+  );
 
   /**
    * Fetch Tenants effect

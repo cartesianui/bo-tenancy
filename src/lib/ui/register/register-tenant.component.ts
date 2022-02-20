@@ -1,19 +1,14 @@
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseComponent } from '@cartesianui/common';
-import { accountModuleAnimation } from '@cartesianui/common';
-import { AuthService } from '../../shared';
-
-import { AccountSandbox } from '../../account.sandbox';
-
-import { TenantRegistrationForm } from '@app/account/models/form/tenant-registration.model';
-
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BaseComponent } from '@cartesianui/common';
+import { TenancySandbox } from '../../tenancy.sandbox';
+import { TenantRegistrationForm } from '../../models';
+
 
 @Component({
   selector: 'app-account',
   templateUrl: './register-tenant.component.html',
-  animations: [accountModuleAnimation()]
 })
 export class RegisterTenantComponent extends BaseComponent implements OnInit, OnDestroy {
   formGroup = new FormGroup({
@@ -26,7 +21,7 @@ export class RegisterTenantComponent extends BaseComponent implements OnInit, On
   loaded: boolean;
   failed: boolean;
 
-  constructor(injector: Injector, private _router: Router, private authService: AuthService, public _sandbox: AccountSandbox) {
+  constructor(injector: Injector, private _router: Router, public _sandbox: TenancySandbox) {
     super(injector);
   }
 
@@ -47,7 +42,7 @@ export class RegisterTenantComponent extends BaseComponent implements OnInit, On
       form.name = this.formGroup.controls.name.value;
       form.password = this.formGroup.controls.password.value;
       form.domain = this.formGroup.controls.domain.value;
-      this._sandbox.registertenant(form);
+      this._sandbox.register(form);
     } else {
       this.notify.warn('Invalid form data', 'Warning!');
     }
@@ -55,21 +50,21 @@ export class RegisterTenantComponent extends BaseComponent implements OnInit, On
 
   registerEvents(): void {
     this.subscriptions.push(
-      this._sandbox.authLoading$.subscribe((loading) => {
+      this._sandbox.tenantLoading$.subscribe((loading) => {
         if (loading) {
           this.notify.info('Registering');
         }
 
         this.loading = loading;
       }),
-      this._sandbox.authLoaded$.subscribe((loaded) => {
+      this._sandbox.tenantLoaded$.subscribe((loaded) => {
         if (loaded) {
           this.notify.success('Registered Tenant successfully', 'Success!');
           this._router.navigate(['account', 'login']);
         }
         this.loaded = loaded;
       }),
-      this._sandbox.authFailed$.subscribe((failed) => {
+      this._sandbox.tenantFailed$.subscribe((failed) => {
         this.failed = failed;
       })
     );
