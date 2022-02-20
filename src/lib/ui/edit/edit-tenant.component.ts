@@ -1,4 +1,4 @@
-import { Component, Injector, OnDestroy, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '@cartesianui/common';
@@ -10,20 +10,24 @@ import { Tenant, Domain } from '../../models';
   templateUrl: './edit-tenant.component.html'
 })
 export class EditTenantComponent extends BaseComponent implements OnInit, OnDestroy {
-  @ViewChild('formCard') formCard: ElementRef;
   deleting: boolean;
   loading: boolean;
   loaded: boolean;
   failed: boolean;
+
+
+  id: string;
+  tenant: any;
+  domains: Domain[] = [];
+  selectedDomains: Domain[] = [];
+
   domainActive: boolean;
   domainDeactive: boolean;
   domainVerify: boolean;
   domainDelete: boolean;
 
-  id: string;
-  domainsList;
   control: FormControl;
-  tenantDetail;
+
   formGroup = new FormGroup({
     name: new FormControl(''),
     isActive: new FormControl(''),
@@ -48,14 +52,15 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
     this.subscriptions.push(
       this.route.params.subscribe((params) => {
         this.id = params.id;
-        // this._sandbox.fetchDomains(this.id);
-        this.fetchDomainsList();
+        this.fetchDomains();
       }),
-      this._sandbox.domains$.subscribe((data: Tenant[]) => {
-        if (data) {
-          console.log(data);
-          this.domainsList = [];
-          this.domainsList = data;
+
+      this._sandbox.tenant$.subscribe((tenant: any) => {
+        if (tenant) {
+          this.tenant = new Tenant(tenant);
+          this.setFormValue();
+          // this.config[0].value=this.tenant.name;
+          // this.config[1].value=this.tenant.domain;
         }
       }),
       this._sandbox.tenantLoading$.subscribe((loading) => {
@@ -65,7 +70,6 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
           } else {
             this.notify.info('Fetch tenant detail');
           }
-          //this.config[1].disabled = true;
         }
         this.loading = loading;
       }),
@@ -78,7 +82,6 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
           } else {
             this.notify.success('Tenant saved', 'Success!');
           }
-          //this.config[1].disabled = false;
         }
         this.loaded = loaded;
       }),
@@ -87,16 +90,13 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
           if (this.deleting) {
             this.deleting = false;
           }
-          // this.config[1].disabled = false;
         }
         this.failed = failed;
       }),
-      this._sandbox.tenant$.subscribe((tenant: any) => {
-        if (tenant) {
-          this.tenantDetail = new Tenant(tenant);
-          this.setFormValue();
-          // this.config[0].value=this.tenantDetail.name;
-          // this.config[1].value=this.tenantDetail.domain;
+
+      this._sandbox.domains$.subscribe((data: Domain[]) => {
+        if (data) {
+          this.domains = data;
         }
       }),
       this._sandbox.domainLoading$.subscribe((loading) => {
@@ -128,7 +128,7 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
             this.notify.success('Domain Deleted', 'Success!');
             this.domainDelete = false;
           }
-          this.fetchDomainsList();
+          this.fetchDomains();
         }
         this.loaded = loaded;
       }),
@@ -154,8 +154,8 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
   }
 
   setFormValue() {
-    this.formGroup.patchValue(this.tenantDetail);
-    const status = this.tenantDetail.isActive;
+    this.formGroup.patchValue(this.tenant);
+    const status = this.tenant.isActive;
     if (status === 0) {
       this.formGroup.controls['isActive'].setValue('Deactive');
     } else {
@@ -165,10 +165,6 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
 
   fetchTenant() {
     this._sandbox.fetchTenant(this.id);
-  }
-
-  fetchDomainsList() {
-    this._sandbox.fetchDomains(this.id);
   }
 
   // save(group): void {
@@ -185,37 +181,8 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
   //   }
   // }
 
-  // delete(): void {
-  //   this.message.confirm(
-  //     `Are you sure you want to delete the tenant with id ${this.id}`,
-  //     'Delete tenant',
-  //     (res) => {
-  //       if (res) {
-  //         this.deleting = true;
-  //         this._sandbox.deleteTenant(this.id);
-  //       }
-  //     }
-  //   );
-  // }
-
-  activeDomain(domainIds: any) {
-    this.domainActive = true;
-    this._sandbox.activeDomain(domainIds);
-  }
-
-  deactiveDomain(domainIds: any) {
-    this.domainDeactive = true;
-    this._sandbox.deactiveDomain(domainIds);
-  }
-
-  verifyDomain(id: string) {
-    this.domainVerify = true;
-    this._sandbox.verifyDomain(id);
-  }
-
-  deletedomain(id: string) {
-    this.domainDelete = true;
-    this._sandbox.deleteDomain(id);
+  fetchDomains() {
+    this._sandbox.fetchDomains(this.id);
   }
 
   addDomain() {
@@ -227,5 +194,29 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
       this._sandbox.createDomain(form);
       this.control.reset();
     }
+  }
+
+  activateDomain() {
+    this.domainActive = true;
+    //this._sandbox.activeDomain();
+  }
+
+  deactivateDomain() {
+    this.domainDeactive = true;
+    //this._sandbox.deactiveDomain(domainIds);
+  }
+
+  verifyDomain() {
+    this.domainVerify = true;
+    //this._sandbox.verifyDomain(id);
+  }
+
+  deleteDomain() {
+    this.domainDelete = true;
+    //this._sandbox.deleteDomain(id);
+  }
+
+  updateSelectedDomains(event){
+    this.selectedDomains.push(...event.selected);
   }
 }

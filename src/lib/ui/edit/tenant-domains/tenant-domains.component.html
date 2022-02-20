@@ -2,15 +2,14 @@
   <div class="col-sm-12">
     <ngx-datatable
       class="material"
-      [rows]="data"
+      [rows]="rows"
       [columns]="[{ name: 'domain' }, { name: 'isActive' }, { name: 'isVerified' }]"
       [columnMode]="'force'"
       [headerHeight]="50"
       [footerHeight]="50"
       [rowHeight]="43"
-      [selected]="selectedDomains"
+      [selected]="selected"
       [selectionType]="'checkbox'"
-      (activate)="onActivate($event)"
       (select)="onSelect($event)"
       (page)="setPage($event)"
     >

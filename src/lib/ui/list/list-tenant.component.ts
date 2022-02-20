@@ -1,6 +1,5 @@
 import { Component, Injector, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { RequestCriteria } from '@cartesianui/ng-axis';
 import { ListingControlsComponent } from '@cartesianui/common';
 import { Tenant, SearchTenantForm } from '../../models';
 import { TenancySandbox } from '../../tenancy.sandbox';
@@ -11,16 +10,14 @@ import { TenancySandbox } from '../../tenancy.sandbox';
 export class ListTenantComponent extends ListingControlsComponent<Tenant, SearchTenantForm> implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('dtContainer') dtContainer: ElementRef;
 
-  selected = 'all';
-  selectedTenants: Tenant[] = [];
-  searchModel = '';
+  searchText = '';
 
   constructor(injector: Injector, public _sandbox: TenancySandbox, protected router: Router) {
     super(injector);
   }
 
   ngOnInit(): void {
-    this.criteria = new RequestCriteria<SearchTenantForm>(new SearchTenantForm()).limit(2);
+    this.initRequestCriteria(SearchTenantForm);
     this.registerEvents();
   }
 
@@ -32,39 +29,28 @@ export class ListTenantComponent extends ListingControlsComponent<Tenant, Search
     this.unregisterEvents();
   }
 
-  onDropDownChange(event) {
-    const el = event.target;
-    this.selected = el.value;
-    el.blur();
-    this.list();
-  }
-
   search() {
     this.setPage(1);
-    if (this.searchModel) {
-      this.criteria.where('name', 'like', this.searchModel);
+    if (this.searchText) {
+      this.criteria.where('name', 'like', this.searchText);
     } else {
       this.criteria.where('name', 'like', '');
     }
     this.list();
   }
 
-  protected list(): void {
+  list(): void {
     this.ui.setBusy(this.dtContainer.nativeElement);
     this.isTableLoading = true;
     this._sandbox.fetchTenants(this.criteria);
   }
 
-  delete() {
-    if (this.selectedTenants.length > 0) {
-      // do deletion stuff
-    }
-  }
+  delete() {}
 
   edit() {
     const url = 'edit';
-    if (this.selectedTenants.length > 0) {
-      this.router.navigate([this.router.url, url, this.selectedTenants[0].id]);
+    if (this.selected.length > 0) {
+      this.router.navigate([this.router.url, url, this.selected[0].id]);
     }
   }
 
@@ -84,11 +70,4 @@ export class ListTenantComponent extends ListingControlsComponent<Tenant, Search
       })
     );
   }
-
-  onSelect({ selected }) {
-    this.selectedTenants.splice(0, this.selectedTenants.length);
-    this.selectedTenants.push(...selected);
-  }
-
-  onActivate(event) {}
 }
