@@ -15,7 +15,6 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
   loaded: boolean;
   failed: boolean;
 
-
   id: string;
   tenant: any;
   domains: Domain[] = [];
@@ -216,7 +215,7 @@ export class EditTenantComponent extends BaseComponent implements OnInit, OnDest
     //this._sandbox.deleteDomain(id);
   }
 
-  updateSelectedDomains(event){
+  updateSelectedDomains(event) {
     this.selectedDomains.push(...event.selected);
   }
 }

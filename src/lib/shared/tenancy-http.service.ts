@@ -9,7 +9,6 @@ import { Tenant, Domain, SearchTenantForm, TenantRegistrationForm } from '../mod
   'Content-Type': 'application/json'
 })
 export class TenancyHttpService extends HttpService {
-
   /**
    * Submits register tenant form to the server
    *

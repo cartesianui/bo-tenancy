@@ -5,10 +5,9 @@ import { BaseComponent } from '@cartesianui/common';
 import { TenancySandbox } from '../../tenancy.sandbox';
 import { TenantRegistrationForm } from '../../models';
 
-
 @Component({
   selector: 'app-account',
-  templateUrl: './register-tenant.component.html',
+  templateUrl: './register-tenant.component.html'
 })
 export class RegisterTenantComponent extends BaseComponent implements OnInit, OnDestroy {
   formGroup = new FormGroup({
