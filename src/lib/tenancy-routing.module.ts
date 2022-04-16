@@ -10,7 +10,6 @@ const routes: Routes = [
     path: '',
     component: TenancyComponent,
     children: [
-      { path: 'register', component: RegisterTenantComponent },
       {
         path: '',
         component: ListTenantComponent,
@@ -27,6 +26,7 @@ const routes: Routes = [
         },
         pathMatch: 'full'
       },
+      { path: 'register', component: RegisterTenantComponent },
       {
         path: '*',
         redirectTo: 'list'

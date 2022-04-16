@@ -1,0 +1,248 @@
+<form novalidate autocomplete="off" [formGroup]="formGroup" (ngSubmit)="update()">
+  <div class="animated fadeIn row mb-2">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-primary pull-right ml-2" [disabled]="!formGroup.valid"><i class="fa fa-save"></i> Save all</button>
+    </div>
+  </div>
+
+  <div class="">
+    <tabset>
+      <!--  User Management tab -->
+      <tab heading="User management" formGroupName="userManagement">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <!-- Allow users to register to system section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Form-Based Registration</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="registerUserInSystem" id="registerUserInSystem" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Allow users to register to system.</h6>
+                      </label>
+                    </div>
+                    <p class="text-muted">If you disable this, users will not be added by admin using user management page.</p>
+                  </div>
+                </div>
+                <!-- New registered users are active by default section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="newUserActiveByDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>New registered users are active by default.</h6>
+                      </label>
+                    </div>
+                    <p class="text-muted">If you disable this, new users will not be active(and can not login) until admin manually activates the account.</p>
+                  </div>
+                </div>
+                <!-- Use security image question section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="captchaOnRegistration" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Use security image question (captcha) on registration.</h6>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Use security image question (captcha) on login section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="captchaOnLogin" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Use security image question (captcha) on login.</h6>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Use radio button section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      <h6>User Default mode.</h6>
+                    </label>
+                    <div class="form-check">
+                      <input class="form-check-input" value="active" type="radio" name="userDefaultMode" formControlName="userDefaultMode" id="flexRadioDefault1" />
+                      <label class="form-check-label" for="flexRadioDefault1"> Active </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" value="passive" type="radio" name="userDefaultMode" formControlName="userDefaultMode" id="flexRadioDefault2" />
+                      <label class="form-check-label" for="flexRadioDefault2"> Passive </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Cookie consent section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Cookie Consent</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="enabledCookieConsent" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Cookie consent enabled.</h6>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Session Timeout Control section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Session Timeout Control</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="enabledSessionTimeout" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Session Timeout Control enabled.</h6>
+                      </label>
+                      <input class="form-control" type="number" formControlName="userSessionTime" [hidden]="!this.formGroup.get('userManagement.enabledSessionTimeout').value" />
+                    </div>
+                  </div>
+                </div>
+                <!-- Other Configuration section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Other Configuration</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="emailConfirmationForLogin" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Email confirmation required for login.</h6>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Profile section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Profile</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="allowProfilePicture" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Allow users to use Gravatar profile picture.</h6>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <!-- End User Management tabs -->
+      <!--  Security tab -->
+      <tab heading="Security" formGroupName="security">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <!-- Password Complexity section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Password Complexity</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="userDefaultSettings" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Use default settings.</h6>
+                      </label>
+                      <div formGroupName="password">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" formControlName="requireDigit" id="flexCheckDefault" />
+                          <label class="form-check-label" for="flexCheckDefault">
+                            <h6>Require digit.</h6>
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" formControlName="requireLowercase" id="flexCheckDefault" />
+                          <label class="form-check-label" for="flexCheckDefault">
+                            <h6>Require lowercase.</h6>
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" formControlName="requireNonAlphanumeric" id="flexCheckDefault" />
+                          <label class="form-check-label" for="flexCheckDefault">
+                            <h6>Require non-alphanumeric.</h6>
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" formControlName="requireUppercase" id="flexCheckDefault" />
+                          <label class="form-check-label" for="flexCheckDefault">
+                            <h6>Require uppercase.</h6>
+                          </label>
+                        </div>
+                        <label><h6>Require length.</h6></label>
+                        <input type="number" formControlName="passwordLength" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- User Lock Out section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>User Lock Out</h5></label><br />
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" formControlName="userAccountLocking" id="flexCheckDefault" />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        <h6>Enable user account locking on failed login attempts.</h6>
+                      </label>
+                    </div>
+                    <label><h6>Maximum number of failed login attempts count before locking the account.</h6></label>
+                    <input type="number" formControlName="numberOfLoginAttemps" class="form-control" />
+                  </div>
+                </div>
+                <!-- Account locking duration section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h6>Account locking duration (as seconds)</h6></label><br />
+                    <input type="number" formControlName="accountLockingDuration" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <!-- End Security tabs -->
+      <!--  Time Zone tab -->
+      <tab heading="Time Zone">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <!-- Time Zone Info section -->
+                <div formGroupName="timing">
+                  <div formGroupName="timeZoneInfo">
+                    <div class="col-sm-12" formGroupName="iana">
+                      <div class="form-group required">
+                        <label><h5>Time Zone Information</h5></label><br />
+                        <label><h6>Time Zone ID (IANA)</h6></label>
+                        <div class="input-group mb-3 required">
+                          <input type="text" formControlName="timeZoneId" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--  Clock Provider Info section -->
+                <div class="col-sm-12" formGroupName="clock">
+                  <div class="form-group required">
+                    <label><h6>Clock Provider</h6></label>
+                    <div class="input-group mb-3 required">
+                      <select formControlName="provider" class="form-control" placeholder="Select Clock Provider">
+                        <option value="unspecifiedClockProvider">Clock Provider</option>
+                        <option value="Providerclock">Provider Clock</option>
+                        <option value="serviceProvider">Service Provider</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <!-- End Invoice tabs -->
+    </tabset>
+  </div>
+</form>

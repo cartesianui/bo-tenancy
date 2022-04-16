@@ -1,5 +1,4 @@
 import { Component, Injector } from '@angular/core';
-import { finalize } from 'rxjs/operators';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BaseComponent } from '@cartesianui/common';
 import { AppTenantAvailabilityState, IsTenantAvailableForm, IsTenantAvailableResponse } from '@app/account/models';

@@ -19,8 +19,21 @@ import { EditTenantComponent } from './ui/edit/edit-tenant.component';
 import { TenantDomainsComponent } from './ui/edit/tenant-domains/tenant-domains.component';
 import { RegisterTenantComponent } from './ui/register/register-tenant.component';
 
+import { HostConfigurationComponent } from './ui/configuration/host/host-configuration.component';
+import { TenantConfigurationComponent } from './ui/configuration/tenant/tenant-configuration.component';
+import { DomainConfigurationComponent } from './ui/configuration/domain/domain-configuration.component';
+
 @NgModule({
-  declarations: [TenancyComponent, RegisterTenantComponent, ListTenantComponent, EditTenantComponent, TenantDomainsComponent],
+  declarations: [
+    TenancyComponent,
+    RegisterTenantComponent,
+    ListTenantComponent,
+    EditTenantComponent,
+    TenantDomainsComponent,
+    HostConfigurationComponent,
+    TenantConfigurationComponent,
+    DomainConfigurationComponent
+  ],
   imports: [
     CommonModule,
     TenancyRoutingModule,

@@ -21,9 +21,13 @@ After building your library with `ng build ng-tenancy`, go to the dist folder `c
 Run `ng test ng-tenancy` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Linting
-`npx prettier --write .` or `npx prettier --check .` 
 
-(Note. Run these commands in lib folder, and notice dot at the end)
+1. Run prettier commands in lib folder
+
+`npx prettier src/**/*.{js,jsx,ts,tsx,html,css,scss} --check`
+`npx prettier src/**/*.{js,jsx,ts,tsx,html,css,scss} --write`
+
+2. Run lint command as
 
 `ng lint --project=ng-tenancy`
 

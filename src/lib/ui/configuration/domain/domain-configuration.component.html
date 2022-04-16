@@ -1,0 +1,101 @@
+<form novalidate autocomplete="off" [formGroup]="formGroup" (ngSubmit)="update()">
+  <div class="animated fadeIn row mb-2">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-primary pull-right ml-2" [disabled]="!formGroup.valid"><i class="fa fa-save"></i> Save all</button>
+    </div>
+  </div>
+
+  <div class="">
+    <tabset>
+      <!--  Branding tab -->
+      <tab heading="Branding" formGroupName="branding">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <!--  Application Logo section -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group required">
+                      <label><h5>Application Logo</h5></label>
+                      <div class="input-group mb-3">
+                        <div class="custom-file form-control-md">
+                          <input type="file" class="custom-file-input" formControlName="animationLogo" id="inputGroup02" />
+                          <label class="custom-file-label" for="inputGroup02">Choose A File</label>
+                        </div>
+                      </div>
+                      <p class="text-muted">Select a JPG/JPEG/PNG/GIF file with a maximum of 30KB size and 139x35 pixel resolution.</p>
+                    </div>
+                    <button type="button" class="btn btn-primary ml-2">Upload</button>
+                    <button type="button" class="btn btn-light ml-2">Clear</button>
+                  </div>
+                </div>
+                <!--  Custom CSS section -->
+                <br />
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group required">
+                      <label><h5>Custom CSS</h5></label>
+                      <div class="input-group mb-3">
+                        <div class="custom-file form-control-md">
+                          <input type="file" class="custom-file-input" formControlName="style" id="inputGroupFile02" />
+                          <label class="custom-file-label" for="inputGroup02">Choose A File</label>
+                        </div>
+                      </div>
+                      <p class="text-muted">Select a .css file with a maximum of 1MB size.</p>
+                    </div>
+                    <button type="button" class="btn btn-primary ml-2">Upload</button>
+                    <button type="button" class="btn btn-light ml-2">Clear</button>
+                  </div>
+                </div>
+                <!-- End Custom CSS section -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <!-- End Branding tabs -->
+
+      <!--  Invoice tab -->
+      <tab heading="Invoice" formGroupName="invoice">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <!-- Legal Name section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h5>Invoice Information</h5></label><br />
+                    <label><h6>Legal Name</h6></label>
+                    <div class="input-group mb-3 required">
+                      <input type="text" formControlName="name" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <!--  Address section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h6>Address</h6></label>
+                    <div class="input-group mb-3 required">
+                      <textarea rows="3" formControlName="address" class="form-control"> </textarea>
+                    </div>
+                  </div>
+                </div>
+                <!--  Tax/VatNo section -->
+                <div class="col-sm-12">
+                  <div class="form-group required">
+                    <label><h6>Tax/VatNo</h6></label>
+                    <div class="input-group mb-3 required">
+                      <input type="text" formControlName="taxNumber" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <!-- End Invoice tabs -->
+    </tabset>
+  </div>
+</form>
