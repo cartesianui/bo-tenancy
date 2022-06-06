@@ -46,6 +46,7 @@ import { DomainConfigurationComponent } from './ui/configuration/domain/domain-c
     StoreModule.forFeature(tenantFeatureKey, tenantReducers),
     EffectsModule.forFeature([TenantEffects])
   ],
-  providers: [TenancySandbox, TenancyHttpService]
+  providers: [TenancySandbox, TenancyHttpService],
+  exports: [RegisterTenantComponent]
 })
 export class NgTenancyModule {}

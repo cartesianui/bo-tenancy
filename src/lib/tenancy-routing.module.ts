@@ -26,7 +26,6 @@ const routes: Routes = [
         },
         pathMatch: 'full'
       },
-      { path: 'register', component: RegisterTenantComponent },
       {
         path: '*',
         redirectTo: 'list'
