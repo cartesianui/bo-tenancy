@@ -7,7 +7,7 @@
     "@cartesianui/js-axis": "^1.0.0",
     "@cartesianui/core": "^1.0.0",
     "@cartesianui/common": "^1.0.0",
-    "@cartesianui/ng-configuration": "^1.0.0"
+    "@cartesianui/bo-configuration": "^1.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

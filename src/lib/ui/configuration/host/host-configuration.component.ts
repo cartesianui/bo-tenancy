@@ -2,7 +2,7 @@ import { Component, OnInit, Injector, OnDestroy, Input } from '@angular/core';
 import { BaseComponent } from '@cartesianui/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { Configuration, ConfigurationSandbox } from '@cartesianui/ng-configuration';
+import { Configuration, ConfigurationSandbox } from '@cartesianui/bo-configuration';
 
 @Component({
   selector: 'host-configuration',

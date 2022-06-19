@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseComponent } from '@cartesianui/common';
-import { Configuration, ConfigurationSandbox } from '@cartesianui/ng-configuration';
+import { Configuration, ConfigurationSandbox } from '@cartesianui/bo-configuration';
 
 @Component({
   selector: 'tenant-configuration',
