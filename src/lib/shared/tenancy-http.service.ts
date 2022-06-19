@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService, POST, GET, Body, Criteria, DefaultHeaders, Adapter, RequestCriteria, Path, DELETE, PATCH } from '@cartesianui/ng-axis';
+import { HttpService, POST, GET, Body, Criteria, DefaultHeaders, Adapter, RequestCriteria, Path, DELETE, PATCH } from '@cartesianui/core';
 import { Tenant, Domain, SearchTenantForm, TenantRegistrationForm } from '../models';
 
 @Injectable()
