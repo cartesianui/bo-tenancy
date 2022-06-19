@@ -4,9 +4,9 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project ng-tenancy` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-tenancy`.
+Run `ng generate component component-name --project bo-tenancy` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project bo-tenancy`.
 
-> Note: Don't forget to add `--project ng-tenancy` or else it will be added to the default project in your `angular.json` file.
+> Note: Don't forget to add `--project bo-tenancy` or else it will be added to the default project in your `angular.json` file.
 
 ## Build
 
@@ -14,11 +14,11 @@ Run `ng build tenant` to build the project. The build artifacts will be stored i
 
 ## Publishing
 
-After building your library with `ng build ng-tenancy`, go to the dist folder `cd dist/ng-tenancy` and run `npm publish`.
+After building your library with `ng build bo-tenancy`, go to the dist folder `cd dist/bo-tenancy` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test ng-tenancy` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test bo-tenancy` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Linting
 
@@ -29,7 +29,7 @@ Run `ng test ng-tenancy` to execute the unit tests via [Karma](https://karma-run
 
 2. Run lint command as
 
-`ng lint --project=ng-tenancy`
+`ng lint --project=bo-tenancy`
 
 ## Further help
 

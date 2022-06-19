@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["projects/ng-tenancy/tsconfig.lib.json", "projects/ng-tenancy/tsconfig.spec.json"],
+        "project": ["projects/bo-tenancy/tsconfig.lib.json", "projects/bo-tenancy/tsconfig.spec.json"],
         "createDefaultProgram": true
       },
       "rules": {

@@ -49,4 +49,4 @@ import { DomainConfigurationComponent } from './ui/configuration/domain/domain-c
   providers: [TenancySandbox, TenancyHttpService],
   exports: [RegisterTenantComponent]
 })
-export class NgTenancyModule {}
+export class TenancyModule {}
