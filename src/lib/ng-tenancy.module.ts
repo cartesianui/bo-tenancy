@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { NgFormModule } from '@cartesianui/ng-form';
+import { FormsModule as CartesianFormsModule } from '@cartesianui/forms';
 import { TenancyRoutingModule } from './tenancy-routing.module';
 import { tenantFeatureKey } from './store/tenant.reducer';
 import { tenantReducers } from './store';
@@ -42,7 +42,7 @@ import { DomainConfigurationComponent } from './ui/configuration/domain/domain-c
     ReactiveFormsModule,
     TabsModule.forRoot(),
     NgxDatatableModule,
-    NgFormModule,
+    CartesianFormsModule,
     StoreModule.forFeature(tenantFeatureKey, tenantReducers),
     EffectsModule.forFeature([TenantEffects])
   ],
